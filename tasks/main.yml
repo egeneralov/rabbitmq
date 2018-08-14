@@ -1,0 +1,22 @@
+---
+# tasks file for egeneralov.rabbitmq
+
+- name: Install AMQP
+  apt:
+    name: rabbitmq-server
+    state: present
+
+- name: Enable AMQP UI
+  shell: rabbitmq-plugins enable rabbitmq_management
+  args:
+    creates: /var/lib/rabbitmq/mnesia/rabbit@amqp-plugins-expand/rabbitmq_management-3.6.6
+
+- shell: "{{ item }}"
+  failed_when: false
+  changed_when: command.stdout.find("Error") != 1
+  register: command
+  with_items:
+    - 'rabbitmqctl add_vhost {{ vhost }}'
+    - 'rabbitmqctl add_user {{ user }} {{ passwd }}'
+    - 'rabbitmqctl set_user_tags {{ user }} administrator'
+    - 'rabbitmqctl set_permissions -p {{ user }} {{ vhost }} ".*" ".*" ".*"'

@@ -1,0 +1,12 @@
+galaxy_info:
+  author: Eduard Generalov
+  description: Provision rabbitmq installation for debian
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+  - name: Debian
+    versions:
+    - stretch
+  galaxy_tags: []
+
+dependencies: []

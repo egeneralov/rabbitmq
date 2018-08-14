@@ -1,0 +1,7 @@
+---
+# defaults file for egeneralov.rabbitmq
+
+user: administrator
+passwd: administrator
+
+vhost: "{{ user }}"
