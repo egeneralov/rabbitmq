@@ -1,6 +1,18 @@
 ---
 # tasks file for egeneralov.rabbitmq
 
+- name: "iptables: allow connections"
+  iptables:
+    chain: "{{ item.chain }}"
+    protocol: tcp
+    destination_port: "{{ item.port }}"
+    ctstate: NEW,ESTABLISHED
+    jump: ACCEPT
+    comment: "Allow connections to amqp"
+  with_items:
+    - { 'port': '5672', 'chain': 'OUTPUT' }
+    - { 'port': '15672', 'chain': 'INPUT' }
+
 - name: Install AMQP
   apt:
     name: rabbitmq-server
@@ -20,3 +32,5 @@
     - 'rabbitmqctl add_user {{ user }} {{ passwd }}'
     - 'rabbitmqctl set_user_tags {{ user }} administrator'
     - 'rabbitmqctl set_permissions -p {{ user }} {{ vhost }} ".*" ".*" ".*"'
+
+
