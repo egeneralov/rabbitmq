@@ -31,6 +31,6 @@
     - 'rabbitmqctl add_vhost {{ vhost }}'
     - 'rabbitmqctl add_user {{ user }} {{ passwd }}'
     - 'rabbitmqctl set_user_tags {{ user }} administrator'
-    - 'rabbitmqctl set_permissions -p {{ user }} {{ vhost }} ".*" ".*" ".*"'
+    - 'rabbitmqctl set_permissions -p {{ vhost }} {{ user }} ".*" ".*" ".*"'
 
 
