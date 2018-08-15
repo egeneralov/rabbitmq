@@ -1,7 +1,7 @@
-egeneralov.golang
+egeneralov.rabbitmq
 =================
 
-Provision golang for amd64
+Provision rabbitmq for amd64
 
 Role Variables
 --------------
@@ -15,7 +15,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: localhost
       roles:
-         - { role: egeneralov.golang, version: 1.10.3 }
+         - { role: egeneralov.rabbitmq, user: egeneralov, passwd: password, vhost: virtual }
 
 License
 -------
